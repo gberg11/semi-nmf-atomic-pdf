@@ -16,7 +16,7 @@ def semi_nmf_gr_phases(X, k=2, n_iter=200, offset=1e-8):
     G[np.arange(n_features), labels] = 1.0
     G = G + offset 
     errors=[]
-    for iter in range(n_iter):
+    for it in range(n_iter):
         #update F
         F = (X.T @ G) @ np.linalg.pinv(G.T @ G)
         XF = X @ F          
@@ -25,7 +25,6 @@ def semi_nmf_gr_phases(X, k=2, n_iter=200, offset=1e-8):
         num = pos(XF) + G @ neg(FtF)
         den = neg(XF) + G @ pos(FtF)
         G *= np.sqrt(num / den)
-        G_T = np.transpose(G)
         X_SMNF = G @ F.T
         error = np.linalg.norm(X - X_SMNF)
         errors.append(error)
