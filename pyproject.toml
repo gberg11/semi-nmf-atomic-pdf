@@ -11,6 +11,18 @@ dependencies = [
   "scikit-learn"
 ]
 
+[project.optional-dependencies]
+# Physics-informed autoencoder (src/semi_nmf_atomic_pdf/autoencoder).
+# NOTE: the diffpy stack is easiest to install via conda/conda-forge.
+autoencoder = [
+  "torch",
+  "scipy",
+  "diffpy.structure",
+  "diffpy.srreal",
+]
+# The predictive-coding variant (seminmf_pc.py) additionally needs JAX + FabricPC
+# (https://github.com/trueagi-io/FabricPC), installed separately.
+
 [tool.setuptools]
 package-dir = {"" = "src"}
 
